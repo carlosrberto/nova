@@ -15,25 +15,29 @@
             parent = o.extend,
             implement = o.implement;
 
+        delete o.initialize;
+
         if ( parent ) {
             F.prototype.parent = function () {
                 parent.apply(this, arguments);
             }           
             nova.extend(F.prototype, parent.prototype);
-        }
-
-        for( p in o ) {
-            if ( o.hasOwnProperty(p) &&  !p.match(/implement|initialize|extend/) ) {
-                F.prototype[p] = o[p];
-            }
+            delete o.extend;
         }
 
         if ( implement ) {
             var i=0, l = implement.length;
             for (; i < l; i++) {
                 nova.extend(F.prototype, implement[i].prototype);
-            };
+            }
+            delete o.implement;
         }
+
+        for( p in o ) {
+            if ( o.hasOwnProperty(p) ) {
+                F.prototype[p] = o[p];
+            }
+        }        
 
         return F;
     }
