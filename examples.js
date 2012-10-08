@@ -1,50 +1,51 @@
-var RacingCar = nova.Class({
-    turbine: function() {
-        this.stepKm = 2;
+var DOMReady = nova.Class({
+    initialize: function() {
+        $($.proxy(this.domReady, this));
+    },
+
+    domReady: function() {
+        
     }
 });
 
-var NeedForSpeedCar = nova.Class({
-    nitro: function () {
-        this.oldStepKm = this.stepKm || 1;
-        this.stepKm = 20;
+var CustomEvents = nova.Class({
+    addEvent: function(ev, fn) {
+        this.events = this.events || {};
+        this.events[ev] = this.events[ev] || [];
+        this.events[ev].push(fn);
     },
 
-    stopNitro: function () {
-        this.stepKm = this.oldStepKm
-    }
-})
-
-var Veicle = nova.Class({
-    initialize: function(year) {
-        this.year = year;
-        this.manufacter = 'VW';
-    },
-
-    stop: function () {
-        this.km = 0;
-    }
-})
-
-var Car = nova.Class({
-    extend: Veicle,
-    implement: [RacingCar, NeedForSpeedCar],
-
-    initialize : function(year) {
-        this.parent(year);
-        this.stepKm = 1;
-        this.km = 0;
-    },
-
-    run: function(km) {
-        return this.km += km || this.stepKm;
+    trigger: function(ev, args) {
+        if ( this.events && this.events[ev] ) {
+            var events = this.events[ev], i, l = events.length;
+            for (;i < l; i++) {
+                events[i].apply(null, args);
+            };
+        }
     }
 });
 
-var gol = new Car(2012);
-
-for( p in gol ) {
-    if ( gol.hasOwnProperty(p) ) {
-        console.log( p );
+var ContextSelector = nova.Class({
+    $: function(selector) {
+        return $(selector, this.el);
     }
-}
+});
+
+var ElementView = nova.Class({
+    extend: DOMReady,
+    implement: [CustomEvents, ContextSelector]
+});
+
+var ProductDetail = nova.Class({
+    extend: ElementView,
+    domReady: function() {
+        this.el = $('body');
+        this.changeColor();
+    },
+
+    changeColor: function() {
+        this.$('p').css('color', 'red');
+    }
+});
+
+var product = new ProductDetail();
