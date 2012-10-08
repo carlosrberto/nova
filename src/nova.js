@@ -11,9 +11,9 @@
 
     nova.Class = function(o) {
 
-        var F = o.initialize || function() {},
-            parent = o.extend,
-            implement = o.implement;
+        var parent = o.extend,
+            implement = o.implement,
+            F = o.initialize || ( parent ? parent.prototype.constructor : function() {} ); 
 
         delete o.initialize;
 
