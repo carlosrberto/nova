@@ -5,6 +5,8 @@ A small library with utilities for class based JavaScript programming
 
 Examples:
 ---------
+	
+	```javascript
 
 	var DOMReady = nova.Class({
 	    initialize: function() {
@@ -56,4 +58,6 @@ Examples:
 	    }
 	});
 
-	var product = new ProductDetail();	
+	var product = new ProductDetail();
+	
+	```
