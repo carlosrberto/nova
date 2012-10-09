@@ -5,6 +5,9 @@ A small library with utilities for class based JavaScript programming
 
 Examples:
 ---------
+
+Creating Classes
+****************
 	
 ```javascript
 
@@ -41,13 +44,23 @@ var ContextSelector = nova.Class({
     }
 });
 
+```
+
+Extending and Implementing Classes
+**********************************
+
+```javascript
+
 var ElementView = nova.Class({
     extend: DOMReady,
     implement: [CustomEvents, ContextSelector]
 });
 
-var ProductDetail = nova.Class({
-    extend: ElementView,
+```
+
+```javascript
+
+var ProductDetail = ElementView.extend({
     domReady: function() {
         this.el = $('body');
         this.changeColor();
@@ -55,8 +68,8 @@ var ProductDetail = nova.Class({
 
     changeColor: function() {
         this.$('p').css('color', 'red');
-    }
-});
+    }    
+})
 
 var product = new ProductDetail();
 
