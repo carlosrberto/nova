@@ -3,11 +3,8 @@ nova.js
 
 A small library with utilities for class based JavaScript programming
 
-Examples:
----------
-
 Creating Classes
-****************
+----------------
 	
 ```javascript
 
@@ -47,7 +44,7 @@ var ContextSelector = nova.Class({
 ```
 
 Extending and Implementing Classes
-**********************************
+----------------------------------
 
 ```javascript
 
