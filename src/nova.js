@@ -37,7 +37,13 @@
             if ( o.hasOwnProperty(p) ) {
                 F.prototype[p] = o[p];
             }
-        }        
+        }
+
+        F.extend = function(methods) {
+            var props = { extend: F };
+            nova.extend(props, methods);
+            return nova.Class(props);
+        }      
 
         return F;
     }
