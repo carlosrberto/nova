@@ -54,8 +54,7 @@ var ElementView = nova.Class({
     implement: [ CustomEvents, ContextSelector, ContextChange ]
 });
 
-var ProductDetail = nova.Class({
-    extend: ElementView,
+var ProductDetail = ElementView.extend({
     domReady: function() {
         this.el = $('body');
         this.changeColor();
@@ -63,7 +62,7 @@ var ProductDetail = nova.Class({
 
     changeColor: function() {
         this.$('p').css('color', 'red');
-    }
-});
+    }    
+})
 
 var product = new ProductDetail();
