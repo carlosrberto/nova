@@ -17,6 +17,9 @@ var DOMReady = nova.Class({
         
     }
 });
+```
+
+```javascript
 
 var CustomEvents = nova.Class({
     addEvent: function(ev, fn) {
@@ -34,13 +37,15 @@ var CustomEvents = nova.Class({
         }
     }
 });
+```
+
+```javascript
 
 var ContextSelector = nova.Class({
     $: function(selector) {
         return $(selector, this.el);
     }
 });
-
 ```
 
 Extending and Implementing Classes
@@ -52,7 +57,6 @@ var ElementView = nova.Class({
     extend: DOMReady,
     implement: [CustomEvents, ContextSelector]
 });
-
 ```
 
 ```javascript
@@ -69,5 +73,4 @@ var ProductDetail = ElementView.extend({
 })
 
 var product = new ProductDetail();
-
 ```
